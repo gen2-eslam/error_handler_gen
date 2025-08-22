@@ -1,4 +1,5 @@
-![Logo](./logo-no-background.svg)
+<a href="url"><img src="./logo-no-background.svg" align="left" height="48" width="48" ></a>
+
 # Result<T, E> - Type-Safe Error Handling for Dart
 A lightweight, type-safe sealed class for functional error handling in Dart. Eliminate exceptions and embrace explicit error handling with a clean, composable API.
 
@@ -72,4 +73,5 @@ import 'package:result/result.dart';
 
 ## Video 
 https://youtu.be/QV2P_wBSKg4
+
 
