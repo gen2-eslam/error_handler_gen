@@ -1,6 +1,6 @@
 name: error_handler_gen
-description: "A new Flutter package project."
-version: 0.0.1
+description: "A Flutter package for simplified error handling and result type management using functional programming patterns."
+version: 0.0.4
 homepage: https://github.com/example/error_handler_gen
 repository: https://github.com/example/error_handler_gen
 
