@@ -1,10 +1,22 @@
 import 'dart:async';
 
+/// A sealed class representing the result of an operation.
+///
+/// Can be either [Success] containing a value of type [S],
+/// or [Error] containing an error of type [E].
 sealed class Result<S, E> {
   const Result();
+
+  /// Creates a [Success] result with the given [value].
   factory Result.success(S value) = Success<S, E>;
+
+  /// Creates an [Error] result with the given [error].
   factory Result.error(E error) = Error<S, E>;
 
+  /// Handles the result based on whether it is [Success] or [Error].
+  ///
+  /// [success] callback is called if the result is [Success].
+  /// [error] callback is called if the result is [Error].
   void when({
     required void Function(Success<S, E> success) success,
     required void Function(Error<S, E> error) error,
@@ -16,6 +28,11 @@ sealed class Result<S, E> {
     }
   }
 
+  /// Executes an asynchronous [executeableFunction] and returns a [Future] of [Result].
+  ///
+  /// [onError] converts any exception thrown/caught into an [Error].
+  /// [onSuccess] converts the result of the function into a [Success].
+  /// [onFinally] is called after execution completes or fails.
   static Future<Result<S, E>> excuteAsync<T, S, E>({
     required Future<T> Function() executeableFunction,
     required Error<S, E> Function(Object) onError,
@@ -32,6 +49,11 @@ sealed class Result<S, E> {
     }
   }
 
+  /// Executes a synchronous [executeableFunction] and returns a [Result].
+  ///
+  /// [onError] converts any exception thrown/caught into an [Error].
+  /// [onSuccess] converts the result of the function into a [Success].
+  /// [onFinally] is called after execution completes or fails.
   static Result<S, E> excute<T, S, E>({
     required T Function() executeableFunction,
     required Error<S, E> Function(Object) onError,
@@ -48,6 +70,12 @@ sealed class Result<S, E> {
     }
   }
 
+  /// Transforms a stream returned by [streamFunction] into a [Stream] of [Result]s.
+  ///
+  /// [onError] converts any error emitted by the stream into an [Error].
+  /// [onSuccess] converts data emitted by the stream into a [Success].
+  /// [onDone] is called when the stream is done.
+  /// [onCancel] is currently not used in the implementation (passed as parameter but unused).
   static Stream<Result<S, E>> executeStream<T, S, E>({
     required Stream<T> Function() streamFunction,
     required Error<S, E> Function(Object) onError,
@@ -76,12 +104,16 @@ sealed class Result<S, E> {
   }
 }
 
+/// A subclass of [Result] representing a successful operation.
 class Success<S, E> extends Result<S, E> {
+  /// The value of the successful result.
   final S value;
   Success(this.value);
 }
 
+/// A subclass of [Result] representing a failed operation.
 class Error<S, E> extends Result<S, E> {
+  /// The error value.
   final E value;
   Error(this.value);
 }

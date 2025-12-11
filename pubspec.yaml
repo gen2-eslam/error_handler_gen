@@ -1,7 +1,8 @@
 name: error_handler_gen
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/example/error_handler_gen
+repository: https://github.com/example/error_handler_gen
 
 environment:
   sdk: ^3.7.2
