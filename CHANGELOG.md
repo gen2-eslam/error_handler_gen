@@ -1,3 +1,11 @@
+## 1.0.0
+
+* README cleanup and formatting improvements.
+
+## 0.0.4
+
+* README cleanup and formatting improvements.
+
 ## 0.0.3
 
 * Updated package description.
